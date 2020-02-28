@@ -1,0 +1,37 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>{{data.action}} User</mat-card-title>
+        <mat-icon class="example-icon close" (click)="onClose()" aria-hidden="false" aria-label="Example close icon">close</mat-icon>
+    </mat-card-header>
+
+    <form class="example-form" #f="ngForm" (ngSubmit)="onSave(f)">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="First Name" ngModel="{{data && data.user ? data.user.firstName : ''}}" name="firstName" [required]="namereq">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="Last Name" ngModel="{{data && data.user ? data.user.lastName : ''}}" name="lastName" [required]="namereq">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="email" matInput placeholder="Email" ngModel="{{data && data.user ? data.user.email : ''}}" name="email" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input placeholder="Password" matInput [type]="hidepsw ? 'password' : 'text'" ngModel name="password" required>
+          <button mat-icon-button matSuffix (click)="hidepsw = !hidepsw" [attr.aria-label]="'Hide password'"  [attr.aria-pressed]="hidepsw">
+            <mat-icon>{{hidepsw ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field  class="example-full-width">
+          <input placeholder="Confirm Password" matInput [type]="hidepswconf ? 'password' : 'text'" ngModel name="confirmPassword" required>
+          <button mat-icon-button matSuffix (click)="hidepswconf = !hidepswconf" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidepswconf">
+            <mat-icon>{{hidepswconf ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-stroked-button class="btn-block">{{button}}</button>
+      </mat-card-content>
+    </form>
+  </mat-card>
+
+</div>

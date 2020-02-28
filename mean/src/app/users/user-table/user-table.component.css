@@ -1,0 +1,22 @@
+table {
+  text-align: center !important;
+  width: 100%;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+button.mat-button {
+  width: 20%;
+  margin-left: 8%;
+  background-color: #47525e;
+  color: white
+}
+th.mat-header-cell{
+  text-align: center !important;
+}

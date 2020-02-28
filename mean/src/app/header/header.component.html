@@ -1,0 +1,36 @@
+<!--<mat-toolbar color="primary">-->
+<!--  <mat-toolbar-row>-->
+<!--    <span><a mat-button [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="'/'"> My First App </a></span>-->
+<!--    <span class="example-fill-remaining-space" style="width: inherit"></span>-->
+<!--    <span class="align-center"></span>-->
+<!--    <span class="example-spacer"></span>-->
+<!--    <div >-->
+<!--      <a *ngIf="userLogedIn" mat-button [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="'dashboard'"> DashBoard </a>-->
+<!--      <a *ngIf="userLogedIn" mat-button [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="'profile'"> Profile </a>-->
+<!--      <a *ngIf="!userLogedIn" mat-button [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="'login'"> Login </a>-->
+<!--      <a *ngIf="!userLogedIn" mat-button [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="'register'"> Registration</a>-->
+<!--      <a mat-button (click)="onLogout()" *ngIf="userLogedIn"> Logout</a>-->
+<!--    </div>-->
+
+<!--  </mat-toolbar-row>-->
+<!--</mat-toolbar>-->
+
+<nav mat-tab-nav-bar *ngIf="authService.userLogedIn.value">
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [routerLinkActiveOptions]="{exact:true}"
+     [active]="rla.isActive">
+    {{link.label}}
+  </a>
+  <span class="example-fill-remaining-space"></span>
+  <a mat-tab-link
+     (click)="onSign()"
+     routerLinkActive #rla="routerLinkActive"
+     [routerLinkActiveOptions]="{exact:true}"
+     [active]="rla.isActive">
+    Sign out
+  </a>
+</nav>
+
