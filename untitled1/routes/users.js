@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const config = require('../config/db');
 const bcrypt = require('bcrypt');
 
 router.post('/register', (req, res, next) => {
@@ -56,7 +55,7 @@ router.post('/authenticate', (req, res, next) => {
             if(err) throw err;
             if(isMatch) {
                 if(user.status){
-                    const token = jwt.sign(user.toJSON(), config.secret, {
+                    const token = jwt.sign(user.toJSON(), process.env.DATABASE_SECRET, {
                         expiresIn: 60 * 60 * 2 //2 hours
                     });
                     user.lastLoginDate = new Date();
