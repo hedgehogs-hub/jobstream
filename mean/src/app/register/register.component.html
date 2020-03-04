@@ -1,0 +1,80 @@
+<!--<mat-card class="example-card">-->
+<!--  <mat-card-header>-->
+<!--    <mat-card-title>Registration</mat-card-title>-->
+<!--  </mat-card-header>-->
+<!--  <mat-card-content>-->
+<!--    <form class="example-form" #f="ngForm" (ngSubmit)="onSave(f)">-->
+<!--      <table class="example-full-width" cellspacing="0">-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <mat-form-field class="example-full-width">-->
+<!--              <input matInput placeholder="Name" ngModel name="name">-->
+<!--            </mat-form-field>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <mat-form-field class="example-full-width">-->
+<!--              <input matInput placeholder="Username" ngModel name="username" required>-->
+<!--            </mat-form-field>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <mat-form-field class="example-full-width">-->
+<!--              <input type="email" matInput placeholder="Email" ngModel name="email" required>-->
+<!--            </mat-form-field>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <mat-form-field class="example-full-width">-->
+<!--              <input matInput placeholder="Password" ngModel type="password" name="password" required>-->
+<!--            </mat-form-field>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>-->
+<!--              <button type="submit" mat-raised-button color="primary">SignUp</button>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </form>-->
+<!--  </mat-card-content>-->
+<!--</mat-card>-->
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Edit</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" #f="ngForm" (ngSubmit)="onSave(f)">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="First Name" ngModel name="firstName" [required]="namereq">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="Last Name" ngModel name="lastName" [required]="namereq">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="email" matInput placeholder="Email" ngModel name="email" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input placeholder="CPassword" matInput [type]="hidepsw ? 'password' : 'text'" ngModel name="password" required>
+          <button mat-icon-button matSuffix (click)="hidepsw = !hidepsw" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidepsw">
+            <mat-icon>{{hidepsw ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field  class="example-full-width">
+          <input placeholder="Confirm Password" matInput [type]="hidepswconf ? 'password' : 'text'" ngModel name="confirmPassword" required>
+          <button mat-icon-button matSuffix (click)="hidepswconf = !hidepswconf" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidepswconf">
+            <mat-icon>{{hidepswconf ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block">Save</button>
+    </form>
+  </mat-card>
+
+</div>

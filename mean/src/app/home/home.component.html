@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="f" (ngSubmit)="search()">
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field class="select">
+          <mat-label>Platform</mat-label>
+          <mat-select formControlName="platform">
+            <mat-option>Platform</mat-option>
+            <mat-option *ngFor="let platform of platforms" [value]="platform.value">
+              {{platform.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1" class="checkBox-container">
+        <section class="example-section">
+          <label class="example-margin">{{checkBox[0].name}}</label>
+          <mat-checkbox  color="primary" (change)="onCheckboxChange($event)"
+                        [formControlName]="'title'" class="example-margin"
+                        [value]="checkBox[0].name" required></mat-checkbox>
+        </section>
+
+        <section  class="example-section">
+          <label class="example-margin">{{checkBox[1].name}}</label>
+          <mat-checkbox color="primary" (change)="onCheckboxChange($event)"
+                        [formControlName]="'description'" class="example-margin"
+                        [value]="checkBox[1].name" required></mat-checkbox>
+        </section>
+
+
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field class="example-full-width">
+          <mat-label>Search</mat-label>
+          <input type="search" [formControlName]="'search'" style="width: 100px" matInput  >
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile class="range" colspan="1" rowspan="1">
+        <ng5-slider [formControlName]="'budget'"
+                    [(value)]="minValue" [(highValue)]="maxValue"
+                    [options]="options" [manualRefresh]="slidersRefresh">
+        </ng5-slider>
+      </mat-grid-tile>
+    </mat-grid-list>
+      <mat-grid-list cols="4" rowHeight="50px">
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-card-actions>
+            <button mat-button type="submit">Search</button>
+          </mat-card-actions>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-card-content>
+</mat-card>
+<hr>
+<app-job-search-list></app-job-search-list>
+
