@@ -1,0 +1,12 @@
+.job-container >>> .mat-figure{
+  display: flex;
+  align-content: center;
+  align-items: flex-start;
+  height: 60px;
+  flex-direction: column !important;
+  padding: 10px;
+}
+.mat-button {
+  background-color: #47525e;
+  color: white;
+}
