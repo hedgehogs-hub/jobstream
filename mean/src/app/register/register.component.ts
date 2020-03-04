@@ -30,15 +30,15 @@ export class RegisterComponent implements OnInit {
       console.log('Please insert valid email') ;
       return false;
     }
-    this.authService.registerUser(user).subscribe(
-      data => {
-        if(data.success){
-          console.log(data.msg) ;
-          this.router.navigate(['login']);
-        } else {
-          console.log('No Registered') ;
-        }
-      }
-    )
+    // this.authService.registerUser(user).subscribe(
+    //   data => {
+    //     if(data.success){
+    //       console.log(data.msg) ;
+    //       this.router.navigate(['login']);
+    //     } else {
+    //       console.log('No Registered') ;
+    //     }
+    //   }
+    // )
   }
 }

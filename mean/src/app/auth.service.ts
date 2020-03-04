@@ -5,12 +5,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import {BehaviorSubject, Subject, throwError} from 'rxjs';
 import {UserModel} from './user.model';
 import {Router} from '@angular/router';
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  baseUrl = environment.APIEndpoint;
   userLogedIn = new BehaviorSubject(null);
   sharedUsers = new BehaviorSubject<UserModel[]>(null) ;
   private tokenExpirationTimer: any;
@@ -19,33 +21,33 @@ export class AuthService {
   user ={};
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService,private router: Router) { }
 
-  registerUser(user) {
-    const users = this.users;
-    this.users = null;
-
-    let headers = new HttpHeaders();
-    headers.append('Content-Type','application-json');
-    return this.http.post<{success: string, msg: any}>('users/register', user, {headers: headers})
-      .pipe(
-        catchError(this.handlError),
-        map(res => res),
-        tap( res => {
-          if(res.success){
-            this.sharedUsers.next(res.msg.user);
-            return res;
-          }
-        })
-      )
-  }
+  // registerUser(user) {
+  //   const users = this.users;
+  //   this.users = null;
+  //
+  //   let headers = new HttpHeaders();
+  //   headers.append('Content-Type','application-json');
+  //   return this.http.post<{success: string, msg: any}>('users/register', user, {headers: headers})
+  //     .pipe(
+  //       catchError(this.handlError),
+  //       map(res => res),
+  //       tap( res => {
+  //         if(res.success){
+  //           this.sharedUsers.next(res.msg.user);
+  //           return res;
+  //         }
+  //       })
+  //     )
+  // }
 
   loginUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type','application-json');
-    return this.http.post<{success: string, msg: any}>('http://localhost:3000/users/authenticate', user, {headers: headers})
+    return this.http.post<{success: string, msg: any}>(this.baseUrl+'users/authenticate', user, {headers: headers})
       .pipe(catchError(this.handlError),
         map(
         res => res
-        ),tap(res => this.handleAuthentication(res.msg.user.email, res.msg.user._id, res.msg.token, +res.msg.expiresIn)))
+        ),tap(res => this.handleAuthentication(res.msg.user.email, res.msg.user._id, res.msg.user.firstName, res.msg.user.lastName , res.msg.token, +res.msg.expiresIn)))
   }
 
   storeUser(token,user){
@@ -90,10 +92,10 @@ export class AuthService {
     },expirationDuration)
   }
 
-  private handleAuthentication(email: string, userId:string, token: string, expiresIn: number){
+  private handleAuthentication(email: string, userId:string, firstName: string, lastName: string, token: string, expiresIn: number){
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     // @ts-ignore
-    const loadedUser = {firstName: this.user.firstName, lastName: this.user.lastName ,email:email, id: userId,token: token, expirationTime: expiresIn};
+    const loadedUser = {firstName: firstName, lastName: lastName ,email:email, id: userId,token: token, expirationTime: expiresIn};
     this.userLogedIn.next(loadedUser);
     this.autoLogOut(expiresIn*1000);
     localStorage.setItem('user',JSON.stringify(loadedUser));

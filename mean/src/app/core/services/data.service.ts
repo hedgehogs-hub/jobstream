@@ -3,12 +3,14 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {Injectable} from '@angular/core';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {environment} from "../../../environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'http://localhost:3000/';
+  baseUrl = environment.APIEndpoint;
   headers;
   authToken;
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
