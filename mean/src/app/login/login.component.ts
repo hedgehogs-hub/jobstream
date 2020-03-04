@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       data => {
         if(data.success){
           this.authService.storeUser(data.msg.token, data.msg.user);
-          this.router.navigate(['users'])
+          this.router.navigate(['/'])
         } else {
           this.error = data.msg;
           this.toastr.error(this.error, 'Oops!!!', {timeOut: 3000});
