@@ -16,14 +16,14 @@
       <mat-grid-tile colspan="1" rowspan="1" class="checkBox-container">
         <section class="example-section">
           <label class="example-margin">{{checkBox[0].name}}</label>
-          <mat-checkbox  color="primary" (change)="onCheckboxChange($event)"
+          <mat-checkbox  color="primary" (click)="onCheckboxChange($event)" id="title-cb"
                         [formControlName]="'title'" class="example-margin"
                         [value]="checkBox[0].name" required></mat-checkbox>
         </section>
 
         <section  class="example-section">
           <label class="example-margin">{{checkBox[1].name}}</label>
-          <mat-checkbox color="primary" (change)="onCheckboxChange($event)"
+          <mat-checkbox color="primary" (click)="onCheckboxChange($event)" id="description-cb"
                         [formControlName]="'description'" class="example-margin"
                         [value]="checkBox[1].name" required></mat-checkbox>
         </section>

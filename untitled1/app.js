@@ -18,6 +18,7 @@ mongoose.connection.on('error', (err) => {
 let app = express();
 
 const users = require('./routes/users');
+const indeed = require('./routes/users');
 
 
 app.use(cors());
@@ -33,6 +34,7 @@ require('./config/passport')(passport);
 // pasport(passport);
 // let urlencoded = bodyParser.urlencoded({ extended: false});
 app.use('/users', users);
+app.use('/indeed', indeed);
 
 app.get('/',  (req, res) => {
     res.send('Invalid Endpoint');

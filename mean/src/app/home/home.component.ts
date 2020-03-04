@@ -53,19 +53,21 @@ export class HomeComponent implements OnInit {
   constructor(private fb: FormBuilder){
   }
   onCheckboxChange(e) {
-    const  item = e.source.value;
+    const  item = e.currentTarget.id;
     const title = this.f.get('title');
     const description = this.f.get('description');
 
     switch (item) {
-      case 'title':
-        if (!(title.value && description.value)) {
-          description.setValue(true);
+      case 'title-cb':
+        if (title.value && !description.value) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
         }
         break;
-      case 'description':
-        if (!(title.value && description.value)) {
-          title.setValue(true);
+      case 'description-cb':
+        if (!title.value && description.value) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
         }
         break;
     }
