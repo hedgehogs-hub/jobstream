@@ -4,15 +4,18 @@ const cors = require('cors');
 const passport = require('passport');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+let User = require('./models/user');
 require('dotenv').config();
 
 mongoose.connect(process.env.DATABASE_URL, { useFindAndModify: false });
 mongoose.connection.on('connected', () => {
+    User.seedUser();
     console.log('Connected to Db' + process.env.DATABASE_URL);
 });
 mongoose.connection.on('error', (err) => {
     console.log(err);
 });
+
 
 
 let app = express();

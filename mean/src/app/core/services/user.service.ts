@@ -16,7 +16,7 @@ export class UserService extends DataService {
   editUser(user) {
     return this.edit('users/edit', user);
   }
-  deleteUser(user) {
-    return this.delete('users/delete', user);
+  deleteUser(userId) {
+    return this.delete(`users/delete/${userId}`);
   }
 }

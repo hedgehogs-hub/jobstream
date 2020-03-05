@@ -53,8 +53,12 @@ export class DataService {
       );
   }
 
-  delete(path,payload) {
-    return this.http.delete<{success: boolean, msg: any}>(this.baseUrl + path, { params: payload, headers: this.headers })
+  delete(path) {
+    const options = {
+      headers: this.headers
+    };
+
+    return this.http.delete<{success: boolean, msg: any}>(this.baseUrl + path, options)
       .pipe(
         catchError(this.handlError),
         map(res => res),

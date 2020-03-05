@@ -17,13 +17,11 @@ export class HeaderComponent implements OnInit {
     {path:'analytical_page', label: 'Analytical Page'},
     {path:'users', label: 'User'},
   ];
-  userLogedIn;
+
   sub: Subscription;
   authToken: string;
-  user: {};
   constructor(private router: Router,public authService: AuthService) {
     this.authToken = localStorage.getItem('id_token');
-    this.user = JSON.parse(localStorage.getItem('user')) ;
     console.log(this.authToken);
   }
 
