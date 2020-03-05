@@ -108,7 +108,8 @@ export class UserTableComponent implements OnInit,AfterViewInit {
     });
     dialogRef.afterClosed().subscribe(value => {
       if(value) {
-        this.userService.deleteUser(this.dataSource.data[i]).subscribe(
+        // @ts-ignore
+        this.userService.deleteUser(this.dataSource.data[i]._id).subscribe(
           data => {
             if (data.success) {
               console.log(data.msg);
@@ -118,13 +119,5 @@ export class UserTableComponent implements OnInit,AfterViewInit {
         );
       }
     });
-
-    // this.authService.deleteUser(this.users[i]).subscribe(res => {
-    //   this.toastr.success(res.msg.msg, '', {timeOut: 3000});
-    // });
   }
-
-
-
-
 }

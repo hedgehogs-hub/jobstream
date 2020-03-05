@@ -18,7 +18,7 @@ const UserSchema = mongoose.Schema({
     },
     status: {
         type: Boolean,
-        default: false
+        default: true
     },
     lastLoginDate: {
         type: Date
@@ -27,6 +27,27 @@ const UserSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
+
+module.exports.seedUser = function () {
+    let newUser = new User({
+        firstName: 'Arto',
+        lastName: 'Hayrapetyan',
+        email: 'arto.hayrapetyan@gmail.com',
+        password: 'art123'
+    });
+    User.getUserByEmail(newUser.email, (err,user) => {
+        if (user) {
+            return false;
+        }else {
+            User.addUser(newUser, (err, user) => {
+                if(err) {
+                    return false;
+                }
+                return true;
+            });
+        }
+    });
+};
 module.exports.getUserById = function (id, callback) {
     User.findById(id, callback);
 };
